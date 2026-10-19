@@ -21,6 +21,10 @@ function smtp(): Transporter | null {
     port: env.SMTP_PORT,
     secure: env.SMTP_SECURE === "true",
     auth: env.SMTP_USER ? { user: env.SMTP_USER, pass: env.SMTP_PASS } : undefined,
+    // Fail fast (e.g. a host that blocks SMTP ports) instead of leaving the sign-in request hanging for minutes.
+    connectionTimeout: 10_000,
+    greetingTimeout: 10_000,
+    socketTimeout: 20_000,
   });
   return transporter;
 }
