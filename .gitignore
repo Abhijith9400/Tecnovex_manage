@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Builds
+dist/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# Environment (commit only the *.example files)
+.env
+.env.local
+.env.*.local
+!.env.example
+!.env.local.example
+
+# Uploaded client files and generated documents
+backend/uploads/*
+!backend/uploads/.gitkeep
+!backend/uploads/.gitignore
+
+# Generated Prisma client
+backend/src/generated/
+
+# Logs / OS / editor
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+coverage/

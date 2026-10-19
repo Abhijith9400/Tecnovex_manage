@@ -1,0 +1,44 @@
+@import "tailwindcss";
+/* Iconify icons as CSS (Solar outline set, bundled locally): icon-[solar--name] classes, see components/ui/icons.tsx. */
+@plugin "@iconify/tailwind4";
+
+/* Design tokens (orange theme). Use as Tailwind classes, e.g. bg-accent, text-ink, border-line. */
+@theme {
+  --color-accent: #f97316;
+  --color-accent-hover: #ea580c;
+  --color-accent-soft: #fff7ed;
+  --color-page: #f8fafc;
+  --color-ink: #0f172a;
+  --color-muted: #64748b;
+  --color-line: #e2e8f0;
+  --color-card: #ffffff;
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
+  --color-warning: #d97706;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+body {
+  background: var(--color-page);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Slim scrollbar for the sidebar navigation. */
+.sidebar-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+.sidebar-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}

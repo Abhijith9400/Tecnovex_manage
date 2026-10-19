@@ -1,0 +1,47 @@
+import { Router } from "express";
+import { csrfProtection } from "../middleware/csrf";
+import { adCampaignRouter, workLogRouter } from "./ads.routes";
+import { agreementRouter, projectRouter } from "./agreement.routes";
+import { approvalRouter } from "./approval.routes";
+import { authRouter } from "./auth.routes";
+import { calendarRouter } from "./calendar.routes";
+import { clientRouter } from "./client.routes";
+import { contentCalendarRouter } from "./contentCalendar.routes";
+import { creativeShelfRouter } from "./creative.routes";
+import { employeeRouter, payrollRouter } from "./employee.routes";
+import { filesRouter } from "./files.routes";
+import { dashboardRouter, expenseRouter, incomeRouter, reportRouter } from "./finance.routes";
+import { healthRouter } from "./health.routes";
+import { invoiceRouter } from "./invoice.routes";
+import { paymentRouter } from "./payment.routes";
+import { portalRouter } from "./portal.routes";
+import { settingsRouter } from "./settings.routes";
+import { taskRouter } from "./task.routes";
+
+export const apiRouter = Router();
+
+apiRouter.use(csrfProtection);
+
+apiRouter.use("/health", healthRouter);
+apiRouter.use("/auth", authRouter);
+apiRouter.use("/settings", settingsRouter);
+apiRouter.use("/files", filesRouter);
+apiRouter.use("/dashboard", dashboardRouter);
+apiRouter.use("/clients", clientRouter);
+apiRouter.use("/creatives", creativeShelfRouter);
+apiRouter.use("/agreements", agreementRouter);
+apiRouter.use("/projects", projectRouter);
+apiRouter.use("/invoices", invoiceRouter);
+apiRouter.use("/payments", paymentRouter);
+apiRouter.use("/employees", employeeRouter);
+apiRouter.use("/payroll", payrollRouter);
+apiRouter.use("/expenses", expenseRouter);
+apiRouter.use("/income", incomeRouter);
+apiRouter.use("/reports", reportRouter);
+apiRouter.use("/portal", portalRouter);
+apiRouter.use("/ad-campaigns", adCampaignRouter);
+apiRouter.use("/work-logs", workLogRouter);
+apiRouter.use("/tasks", taskRouter);
+apiRouter.use("/calendar", calendarRouter);
+apiRouter.use("/approvals", approvalRouter);
+apiRouter.use("/content-calendars", contentCalendarRouter);

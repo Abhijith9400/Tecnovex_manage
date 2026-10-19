@@ -1,0 +1,22 @@
+# Local development database only. Do not use these credentials in production.
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: agency-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: agency
+      POSTGRES_PASSWORD: agency_dev_password
+      POSTGRES_DB: agency_management
+    ports:
+      - "5432:5432"
+    volumes:
+      - agency_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U agency -d agency_management"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  agency_pgdata:
