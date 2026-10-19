@@ -54,14 +54,18 @@ export function getCsrfToken(): Promise<string> {
   return ensureCsrfToken();
 }
 
+/** API_URL may be absolute (local dev) or relative like "/api/v1" (hosted, proxied through the frontend's own domain). */
+const RELATIVE_API = !/^https?:\/\//.test(API_URL);
+
 function buildUrl(path: string, query?: Query) {
-  const url = new URL(`${API_URL}${path}`);
+  const url = new URL(`${API_URL}${path}`, "http://relative.invalid");
   if (query) {
     for (const [key, value] of Object.entries(query)) {
       if (value !== undefined && value !== null && value !== "") url.searchParams.set(key, String(value));
     }
   }
-  return url.toString();
+  // Relative stays relative, so server and browser render the same links.
+  return RELATIVE_API ? `${url.pathname}${url.search}` : url.toString();
 }
 
 async function request<T>(path: string, options: RequestOptions = {}, retried = false): Promise<{ data: T; meta?: PaginationMeta }> {
